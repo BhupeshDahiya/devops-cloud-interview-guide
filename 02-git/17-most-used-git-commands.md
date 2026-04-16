@@ -91,3 +91,19 @@ git rebase main
 📚 Re-applies commits from one branch on top of another. Useful for maintaining a clean commit history before merging.
 
 ---
+
+### 11. `git merge`
+```bash
+git merge main
+```
+📚 Merges branches or integrate changes from one branch to another.
+
+---
+
+### 12. `git log`
+```bash
+git rebase main
+```
+📝 To see the commit history on local machine.
+
+---
