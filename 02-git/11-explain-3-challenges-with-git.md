@@ -22,7 +22,16 @@ These challenges reflect how Git is powerful but not always beginner-friendly:
 
 ## More Questions
 
-1. **Handling Complex Merge Conflicts in Large Teams**  
+1. **Automating the "Trivial" Tasks (Pre-commit Hooks)**  
+  A common 2-year task is realizing that developers keep making the same small mistakes (linting errors, trailing spaces, or forgotten files).
+
+  **The Challenge**: "Our CI pipeline was frequently failing for silly reasons—like formatting errors or missing semicolons. This wasted 'minutes' of runner time and slowed down the feedback loop."
+
+  **Your Action**: "I introduced a pre-commit framework configuration for the team. I set up hooks to run a linter, a syntax checker, and a tool to check for accidentally committed large files before the developer could even finish the git commit command."
+
+  **The Result**: "It shifted the 'fail' earlier in the process (Shift-Left), saving CI/CD costs and developer frustration."
+
+2. **Handling Complex Merge Conflicts in Large Teams**  
    The most common challenge occurs when two developers modify the same lines of code in a large file, or when a feature branch has been "long-lived" and falls far behind the main branch.
 
    **The Situation**: I was working on a feature for two weeks. In that time, the main branch had moved forward significantly with a major architectural refactor. When I tried to merge, I was met with dozens of conflicts.
@@ -31,7 +40,7 @@ These challenges reflect how Git is powerful but not always beginner-friendly:
 
    **The Lesson**: I learned the importance of syncing with main daily to keep conflicts small and manageable.
 
-2. **Accidental Commits to the Wrong Branch (or Sensitive Data)**  
+3. **Accidental Commits to the Wrong Branch (or Sensitive Data)**  
    Everyone has accidentally committed code to the main branch or realized they forgot to .gitignore a file containing an API key.
 
    **The Situation**: A junior developer on my team accidentally pushed a large set of experimental changes directly to the main branch instead of their feature branch, "breaking" the build for the rest of the team.
@@ -40,7 +49,7 @@ These challenges reflect how Git is powerful but not always beginner-friendly:
 
    The Lesson: This taught me the value of Branch Protection Rules in GitHub/GitLab, which I then implemented to prevent direct pushes to main without a Pull Request.
 
-3. **"Detached HEAD" State and Lost Work**  
+4. **"Detached HEAD" State and Lost Work**  
    For many, the first time they encounter a "Detached HEAD" state, it feels like their code has vanished into a black hole.
 
    **The Situation**: While trying to debug a production issue, I checked out a specific old commit hash to see how the code behaved back then. I started making some experimental fixes, only to realize I wasn't on a branch. When I tried to switch branches, I realized my experimental work wasn't "attached" to the timeline.
