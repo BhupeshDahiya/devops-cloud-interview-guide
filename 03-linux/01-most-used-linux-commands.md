@@ -9,7 +9,7 @@ Here are 10 Linux commands I use regularly, excluding the basics like `cd`, `ls`
 
 ---
 
-### 1. `tail -f`  
+### 1. `tail -f/cat/less`  
 ```bash
 tail -f /var/log/nginx/error.log
 ```
@@ -41,7 +41,7 @@ journalctl -u docker.service -f
 
 ---
 
-### 5. `ps aux | grep`  
+### 5. `ps aux | grep/top/htop`  
 ```bash
 ps aux | grep nginx
 ```
@@ -88,5 +88,13 @@ curl -I http://localhost:8080
 rsync -avz /app/ user@server:/backup/
 ```
 📁 Efficient file syncing and backup — much faster and more reliable than `scp` for large directories.
+
+---
+
+### 11. `scp`  
+```bash
+scp file.txt user@remote_host:/path/destination
+```
+📁 Securely transfer files and directories between systems over a network using SSH encryption.
 
 ---
