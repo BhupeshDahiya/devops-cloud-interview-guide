@@ -12,7 +12,7 @@ However, you can **regain access** by using a workaround: create a new key pair,
 
 PEM files (private keys) are **never retrievable from AWS** after initial creation. Losing the PEM file means you cannot SSH into the EC2 instance using the existing key pair.
 
-But here’s how you can still regain access:
+But here’s how you can still regain access: (you can use session manager or ec2 connect from aws console or)
 
 ---
 
