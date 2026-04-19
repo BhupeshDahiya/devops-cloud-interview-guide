@@ -17,7 +17,7 @@ From your local machine:
 ```bash
 ssh -i my-key.pem ec2-user@<instance-public-ip>
 ```
-
+Make sure ip address is correct, .pem file is correct and has correct permissions (400)
 Typical errors:
 - `Permission denied (publickey)`
 - `Connection refused`
