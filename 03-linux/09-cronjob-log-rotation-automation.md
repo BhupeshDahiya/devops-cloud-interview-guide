@@ -27,11 +27,8 @@ fi
 # Compress logs older than 7 days (but newer than 30)
 find "$LOG_DIR" -type f -name "*.log" -mtime +7 -mtime -30 ! -name "*.gz" -exec gzip {} \; -exec echo "[$(date)] Compressed: {}" >> "$LOG_FILE" \;
 # or you can use
-# find "$LOG_DIR" -type f \( -name "*.log" -o -name "*.tar" \) \
--mtime +7 -mtime -30 \
-! -name "*.gz" \
--exec gzip {} \; \
--exec echo "[$(date)] Compressed: {}" >> "$LOG_FILE" \;
+# find "$LOG_DIR" -type f \( -name "*.log" -o -name "*.tar" \) -mtime +7 -mtime -30 ! -name "*.gz" -exec gzip {} \; -exec echo "[$(date)] Compressed: {}" >> "$LOG_FILE" \;
+
 # but generally you will either have .gz files or .tar not both
 
 # Delete compressed logs older than 30 days
