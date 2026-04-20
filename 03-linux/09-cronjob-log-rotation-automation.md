@@ -37,7 +37,24 @@ find "$LOG_DIR" -type f -name "*.gz" -mtime +30 -exec rm -f {} \; -exec echo "[$
 # Optional: Delete uncompressed logs older than 30 days
 find "$LOG_DIR" -type f -name "*.log" -mtime +30 -exec rm -f {} \; -exec echo "[$(date)] Deleted (uncompressed): {}" >> "$LOG_FILE" \;
 
+
 # Done
 echo "[$(date)] Log rotation completed successfully." >> "$LOG_FILE"
 
 ```
+
+**Save the script**
+
+```bash
+chmod +x script.sh
+crontab -e #chose your editor
+0 3 * * * /path/to/script.sh # optional 0 3 * * * /path/to/script.sh >> /path/logfile.log 2>&1
+```
+**Save and exit**
+# Explanation of optional cmd 
+What the command actually says:
+- '2' : Refers to Standard Error.
+- '>' : Means "redirect to."
+- '&1' : Refers to the location of Standard Output (the & tells the shell it’s a file descriptor, not a file named "1").
+
+Translation: "Take all the errors (2) and send them to the same place the normal output (1) is going."
