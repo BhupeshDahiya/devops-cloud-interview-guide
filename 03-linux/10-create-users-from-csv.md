@@ -52,6 +52,22 @@ tail -n +2 "$INPUT" | while IFS=',' read -r username password; do
 done
 
 ```
+# or
+```bash
+#!/bin/bash
+
+File="user.csv"
+
+tail -n +2 "$File" | while read line # skip first line of csv file
+do
+  username=$(echo $line | cut -d',' -f1)
+  password=$(echo $line | cut -d',' -f2)
+
+  useradd -m $username # -m flag ensures that created users get a home folder
+  echo "$username:$password" | chpasswd
+  echo "created user $username"
+done
+```
 
 ---
 
