@@ -7,7 +7,7 @@ An artifact repository is a storage system where you can **publish**, **store**,
 ## ✅ Answer  
 ### JFROG
 Oh, we use JFrog Artifactory for our builds. It handles all our artifacts—Maven, npm, Docker images—you name it. We push build outputs there and pull dependencies from it in our pipelines. It’s really reliable for versioning, supports lots of repo types, and integrates nicely with Jenkins and other CI/CD tools. The caching and proxying for remote repos also speeds things up, so our builds are consistent and faster.
-### NEXUS
+### NEXUS (Better for maven only usecases)
 For our builds, we use Nexus Repository. It manages all our artifacts—like Maven, npm, and Docker images—in a central place. We push build outputs to Nexus and pull dependencies from it in our pipelines. It helps with version control, dependency management, and keeps builds consistent across environments.
 
 ---
