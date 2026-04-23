@@ -5,8 +5,10 @@ Which artifact repository do you use for builds?
 An artifact repository is a storage system where you can **publish**, **store**, and **retrieve** build artifacts like `.jar`, `.war`, Docker images, etc. It’s crucial in modern CI/CD pipelines for dependency management and versioning.
 
 ## ✅ Answer  
-
-In our organization, we use **JFrog Artifactory** as our primary artifact repository for builds.
+### JFROG
+Oh, we use JFrog Artifactory for our builds. It handles all our artifacts—Maven, npm, Docker images—you name it. We push build outputs there and pull dependencies from it in our pipelines. It’s really reliable for versioning, supports lots of repo types, and integrates nicely with Jenkins and other CI/CD tools. The caching and proxying for remote repos also speeds things up, so our builds are consistent and faster.
+### NEXUS
+For our builds, we use Nexus Repository. It manages all our artifacts—like Maven, npm, and Docker images—in a central place. We push build outputs to Nexus and pull dependencies from it in our pipelines. It helps with version control, dependency management, and keeps builds consistent across environments.
 
 ---
 
@@ -17,6 +19,14 @@ In our organization, we use **JFrog Artifactory** as our primary artifact reposi
 - **Proxying public repositories** like Maven Central or Docker Hub to improve speed and reliability.
 - **Access control and security** via RBAC for different teams and projects.
 - **Retention policies** to clean up outdated builds automatically.
+
+### 📘 Why Sonatype Nexus ?
+
+- **Supports multiple artifact formats** (Maven, npm, Docker, etc.) in a single repository.
+- **Centralized storage for all build artifacts** easy versioning and dependency management.
+- **Integrates seamlessly with Jenkins & GitHub Actions** for publishing artifacts during CI/CD.
+- **Access control and security features** for safe artifact management.
+- **Reliable and widely adopted** has good community support.
 
 ---
 
