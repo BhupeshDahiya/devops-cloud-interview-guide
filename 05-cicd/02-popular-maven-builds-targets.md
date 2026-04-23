@@ -39,6 +39,31 @@ Here are 5 Maven build targets I commonly use in my day-to-day workflow:
 - **When I use it:** When I’m developing shared libraries or modules that are reused by other internal projects.
 
 ---
+## OR
+Here are 5 Maven build targets I commonly use in my day-to-day workflow:
+
+--- 
+### 1. `npm install`
+- Installs all dependencies listed in package.json.
+- Often the first step in CI/CD pipelines to set up the environment.
+---
+### 2. `npm run build`
+- Compiles/transpiles the source code (e.g., using Webpack, Babel, TypeScript).
+- Generates production-ready files in a dist or build folder.
+---
+### 3. `npm test / npm run test`
+- Runs unit tests, integration tests, or any test suite defined in the project.
+- Essential for validating code before deploying.
+---
+### 4. `npm run lint`
+- Runs a linter (like ESLint) to check for code quality and styling issues.
+- Helps catch potential bugs and enforce team coding standards.
+---
+### 5. `npm publish / npm pack`
+- Publishes the package to a registry (like npm or Artifactory) or creates a distributable package.
+- Often the last step in the release pipeline for internal or public packages.
+
+---
 
 > Summary:  
 > The most frequently used Maven targets in my daily work include: `clean`, `compile`, `test`, `package`, and `install`. They ensure a complete and reliable build pipeline from development to artifact distribution.
