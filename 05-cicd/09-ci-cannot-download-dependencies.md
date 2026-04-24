@@ -19,7 +19,7 @@ When a build fails to fetch a dependency from an artifact repo (e.g., Artifactor
 ---
 
 #### 2. 🗂️ **Verify Repository Configuration**
-- Check your `pom.xml`, `build.gradle`, or `.npmrc` to ensure the **repository URL is correct**.
+- Check your `pom.xml (~/.m2/settings.xml)`, `build.gradle (~/.gradle/caches/modules-2/files-2.1)`, or `.npmrc (/your/project/path/.npmrc)` to ensure the **repository URL is correct**.
 
 ✅ For Maven:
 ```xml
