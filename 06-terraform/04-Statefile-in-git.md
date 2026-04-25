@@ -16,3 +16,13 @@ Git is designed for merging code, not for real-time state management. If two Dev
 Statefiles are large, complex JSON blobs. If you store them in Git, you will eventually hit a merge conflict. Manually resolving a merge conflict in a statefile is extremely dangerous; one wrong bracket and Terraform can no longer track your resources, potentially leading to accidental deletion of production assets.
 
 > I configure a Remote Backend. For example, in AWS, I use an S3 bucket with Versioning enabled (to recover from accidental state loss) and a DynamoDB table for state locking. This ensures that only one person or CI/CD pipeline can modify the infrastructure at a time, keeping the 'Source of Truth' secure and synchronized.
+
+### Handling "Stuck" Locks
+Sometimes, if your internet crashes or your CI/CD pipeline is killed mid-run, the lock stays in DynamoDB even though no one is actually working. Terraform will refuse to run until the lock is cleared.
+
+The Fix:
+First, get the Lock ID from the error message, then run:
+
+```Bash
+terraform force-unlock <LOCK_ID>
+```
