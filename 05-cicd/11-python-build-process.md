@@ -44,6 +44,7 @@ pip install -r requirements.txt
 
 #### 3. 🛠️ **Build the Package**
 Python uses tools like `setuptools` and `build` to package apps.
+> Install build tool first if you dont have it using `pip install build`
 
 ✅ Steps:
 ```bash
