@@ -17,6 +17,28 @@ Statefiles are large, complex JSON blobs. If you store them in Git, you will eve
 
 > I configure a Remote Backend. For example, in AWS, I use an S3 bucket with Versioning enabled (to recover from accidental state loss) and a DynamoDB table for state locking. This ensures that only one person or CI/CD pipeline can modify the infrastructure at a time, keeping the 'Source of Truth' secure and synchronized.
 
+### Two DevOps Engineers attempts to update statefile at once. What happens ?
+
+**With state locking**
+#### 1. Engineer A runs apply
+- Acquires the state lock
+- Applies the change
+- Updates the state
+- Releases the lock
+#### 2. Engineer B runs apply (at the same time)
+- Cannot acquire the lock
+- Either:
+  - Waits (default behavior), or
+  - Fails immediately (if configured)
+#### 3.After Engineer A finishes
+- Engineer B’s run proceeds
+- Terraform refreshes state
+Sees that the change is already applied and gets Output:
+
+`“No changes. Infrastructure is up-to-date.”`
+
+> With locking, the first apply acquires the lock and performs the change. The second apply waits, then runs after the lock is released, refreshes the state, and sees no changes are needed. Without locking, both runs may attempt the same operation, which can lead to errors like duplicate resource creation or inconsistent state, even if the intended change is identical.
+
 ### Handling "Stuck" Locks
 Sometimes, if your internet crashes or your CI/CD pipeline is killed mid-run, the lock stays in DynamoDB even though no one is actually working. Terraform will refuse to run until the lock is cleared.
 
