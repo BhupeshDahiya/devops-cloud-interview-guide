@@ -50,7 +50,7 @@ Local terraform.tfstate files break as soon as:
 - CI/CD is introduced
 - Machines change or files get lost
 
-Instead, use a remote backend.
+Instead, use a remote backend, defined at `backend.tf`
 
 **Common production choice**
 - AWS: S3 + DynamoDB
