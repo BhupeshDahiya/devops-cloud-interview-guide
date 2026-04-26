@@ -7,7 +7,8 @@ Port is not accessible on `localhost` even after using `-p` flag to publish it. 
 This is a common container networking issue. The question tests your ability to debug port exposure issues in Docker and understand networking between host and container.
 
 ### Answer  
-I would check if the application inside the container is actually listening on the correct interface and port. Often, the issue is that the app is listening on `127.0.0.1` instead of `0.0.0.0` inside the container.
+Firstly I will check if the correct port is used during mapping, then I'll check if the port is free on the Machine/VM `sudo netstat -tuln | grep :<port_number>`, Then I would check firewall and open that port if it's closed then I would check if the application inside the container is actually listening on the correct interface and port. Often, the issue is that the app is listening on `127.0.0.1` instead of `0.0.0.0` inside the container.
+Lastly I can check docker log/inspect.
 
 ### Detailed explanation of the answer for readers’ understanding
 
