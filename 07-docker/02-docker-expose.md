@@ -42,7 +42,8 @@ docker run mynginx
 It won’t be accessible externally unless you publish the port:
 
 ```bash
-docker run -p 8080:80 mynginx (User will use port 8080 to connect [localhots:8080] to connect on port 80 of container)
+docker run -p 8080:80 mynginx 
+# User will use port 8080 to connect (localhots:8080) to connect on port 80 of container
 ```
 
 ---
