@@ -77,6 +77,16 @@ If you rebuild the image with updated code, but still mount your old source dire
 
 ---
 
+### 3. 📦 **Old container still running**
+
+You rebuilt image, but container is still old.
+```bash
+docker ps
+docker rm -f <container>
+docker run ...
+```
+
+---
 ### 🧠 Real-world Insight
 
 > “I once rebuilt a Node.js app image after updating source code. But due to a `-v "$(pwd)":/app` bind mount, it kept running the old code from my host system, not from the newly built image. Took me a while to realize the mount was masking the update.”
