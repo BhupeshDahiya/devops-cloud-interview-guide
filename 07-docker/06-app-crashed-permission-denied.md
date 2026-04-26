@@ -112,3 +112,22 @@ Or avoid mounting sensitive paths.
 ### Key takeaway
 
 > "Always check file permissions and user context in your Dockerfile. A script may run fine on your machine but fail inside a container due to missing execute permissions or user access."
+---
+
+## Bonus
+
+### **Why do you not run apps inside container as root but always create a appuser (non-root user) ?**
+
+Running apps as root inside a container is a bad practice, especially in production. The main reason is security, not functionality.
+By default, containers run as root, but it’s recommended to use a non-root user like appuser for security reasons.
+If the application is compromised, running as root could allow an attacker to gain elevated privileges on the container and potentially the host.
+Using a non-root user follows the principle of least privilege, limiting what the application can access or modify.
+It also helps meet security best practices and compliance requirements in production environments.
+
+### When is root OK?
+- Installing packages (during build)
+- Temporary debugging
+
+But not at runtime
+
+> Running containers as root increases security risk; using a non-root user enforces least privilege and reduces the impact of potential compromises.
