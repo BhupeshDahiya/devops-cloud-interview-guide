@@ -76,6 +76,12 @@ Now, the DB file will persist across container restarts.
 
 ---
 
+> In Docker, volumes are managed by Docker and are preferred for production because they are portable and isolated from the host. Bind mounts directly map a host directory into the container and are mainly used in development for live file changes. The key difference is that volumes are Docker-managed, while bind mounts depend on the host filesystem.
+
+### 💡 Real-world pattern
+- Dev → bind mount (edit code live)
+- Prod → volume (stable + safe storage)
+
 ### Key takeaway
 
 > "Containers are ephemeral by design. To persist data, always use Docker volumes or bind mounts — especially for databases, logs, or uploaded files."
