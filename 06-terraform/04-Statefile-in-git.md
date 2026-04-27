@@ -48,3 +48,11 @@ First, get the Lock ID from the error message, then run:
 ```Bash
 terraform force-unlock <LOCK_ID>
 ```
+
+
+### Why DynamoDB is Preferred for state locks instead of all ther db's(rds,aurora)?
+
+- Serverless and Zero Maintenance: Unlike RDS or Aurora, which require managing instances, clusters, or complex scaling policies, DynamoDB is fully serverless. It requires no infrastructure provisioning, making it ideal for the simple key-value task of "locking".
+- Cost Efficiency: DynamoDB offers a Free Tier and an on-demand pricing model where you only pay for the exact number of requests made. For state locking—which involves infrequent read/write operations—this is significantly cheaper than maintaining a running RDS instance.
+- High Performance at Scale: DynamoDB provides single-digit millisecond latency for the simple "get" and "put" operations needed to acquire or release a lock, regardless of how many state files you manage.
+- Unified Security: Security for DynamoDB is managed entirely through AWS IAM. RDS often requires managing separate database-level credentials (SQL GRANTS), which adds unnecessary complexity to automated CI/CD pipelines. 
