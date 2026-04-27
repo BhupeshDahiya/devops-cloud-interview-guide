@@ -53,6 +53,9 @@ docker push <repo-url>:latest
 - **Azure Container Registry (ACR)** – ideal for Azure-based projects
 - **Google Container Registry / Artifact Registry** – for GCP users
 - **Harbor** – for on-prem self-hosted enterprise registries
+- **Jfrog Artifactory** - A powerful option for managing Docker images, and I have worked with it in some projects. It provides features that make it well-suited for enterprise environments where you need more than just a simple Docker registry.
+Artifactory offers fine-grained access control, security scanning, metadata management, and integration with CI/CD pipelines. It supports private Docker repositories and allows easy versioning, replication, and artifacts promotion between different environments (Dev, QA, Prod).
+It also has a robust API that allows automated management of Docker images, which is useful in CI/CD workflows. Plus, Artifactory integrates well with other JFrog tools like Xray for vulnerability scanning, making it a good choice for production environments that require strong security and compliance measures.
 
 ---
 
