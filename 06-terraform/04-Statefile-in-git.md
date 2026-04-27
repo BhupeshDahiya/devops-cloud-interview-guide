@@ -52,6 +52,8 @@ terraform force-unlock <LOCK_ID>
 
 ### Why DynamoDB is Preferred for state locks instead of all ther db's(rds,aurora)?
 
+#### DynamoDB is preferred because it gives you simple, atomic locking with high availability and zero maintenance, while RDS/Aurora are heavier, more complex, and not optimized for this kind of lightweight coordination task. Earlier we needed DynamoDB because S3 couldn’t handle locking, but now Terraform added S3 native locking using .tflock files.So for new projects, we can skip DynamoDB — just make sure everyone is on Terraform 1.10+.
+
 - Serverless and Zero Maintenance: Unlike RDS or Aurora, which require managing instances, clusters, or complex scaling policies, DynamoDB is fully serverless. It requires no infrastructure provisioning, making it ideal for the simple key-value task of "locking".
 - Cost Efficiency: DynamoDB offers a Free Tier and an on-demand pricing model where you only pay for the exact number of requests made. For state locking—which involves infrequent read/write operations—this is significantly cheaper than maintaining a running RDS instance.
 - High Performance at Scale: DynamoDB provides single-digit millisecond latency for the simple "get" and "put" operations needed to acquire or release a lock, regardless of how many state files you manage.
