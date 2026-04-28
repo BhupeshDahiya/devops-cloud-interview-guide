@@ -11,6 +11,17 @@ This question evaluates your understanding of internal networking in Kubernetes.
 ### Answer  
 Kube-proxy is the component that **implements the logic of Kubernetes Services**. It runs on each node and is responsible for routing service traffic to the correct backend pods using **iptables**, **ipvs**, or **eBPF** rules.
 
+- Create Service & Associate Selector:
+  - I create a Service and define a selector to match specific Pods (via labels).
+- Service Identifies Pods via Selector:
+  - Kubernetes uses the selector to identify which Pods are part of the Service.
+- Kubernetes Creates Endpoints:
+  - Based on the matching Pods, Kubernetes automatically creates an Endpoints object, which contains the IPs of the Pods.
+- kube-proxy Monitors Endpoints:
+  - kube-proxy watches the Endpoints object for changes and updates routing rules.
+- kube-proxy Updates iptables:
+  - kube-proxy updates iptables (or IPVS) to route traffic from the Service IP to the correct Pods listed in the Endpoints.
+
 ---
 
 ### Detailed explanation of the answer for readers’ understanding
