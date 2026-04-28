@@ -55,12 +55,14 @@ This sends a REST request to the Kubernetes API server.
 ## 🧠 Step 3: Controllers monitor etcd state
 
 - The **scheduler** constantly watches for unscheduled pods via the API server.
-- It sees that your pod has no assigned node.
+- The Pod controller(included in Controller-manager) looks at the Pods stored in etcd and checks their status. It sees that the new Pod you just created is Pending because it doesn't yet have a node assigned.
+- The Pod controller then alerts the scheduler that there’s an unscheduled Pod.
 
 ---
 
 ## ⚖️ Step 4: Scheduler picks a suitable node
 
+- The scheduler reads the Pod spec from the API server.
 - It considers available resources, taints, affinities, and other rules.
 - It assigns the pod to a specific node by updating the pod spec with `nodeName`.
 
@@ -77,8 +79,9 @@ This sends a REST request to the Kubernetes API server.
 
 ## 🔌 Step 6: kube-proxy handles networking
 
-- **kube-proxy** sets up networking rules to route traffic to the pod if it's part of a Service.
-- DNS resolution (via CoreDNS) also becomes available.
+- **kube-proxy** sets up network rules to ensure that the Pod can receive traffic from other services or Pods.
+- If the Pod is part of a Service, kube-proxy configures the Service’s endpoints so that traffic is routed to the appropriate Pod(s).
+- CoreDNS (which is typically running as part of Kubernetes) also provides DNS resolution, ensuring that other Pods can reach your Pod using its DNS name (e.g., myapp.default.svc.cluster.local).
 
 ---
 
