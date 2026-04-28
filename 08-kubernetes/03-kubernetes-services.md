@@ -10,6 +10,9 @@ This question checks if you understand how communication happens between differe
 
 ### Answer  
 A Kubernetes Service provides a stable network identity (IP and DNS) to access a set of dynamic, ephemeral pods. It enables internal and external communication with pods regardless of their individual IPs, and supports load balancing across multiple pod replicas.
+#### OR
+
+In Kubernetes, a Service is an abstraction that provides a stable network endpoint for accessing a set of Pods. The primary purpose of a Service is to manage communication between Pods and ensure that services are discoverable and reachable in a Kubernetes cluster.
 
 ---
 
