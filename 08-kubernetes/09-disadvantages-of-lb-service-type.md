@@ -67,7 +67,7 @@ The LB automatically routes traffic to the backend pods via the cluster’s node
 
 #### 🐌 5. Slow Provisioning
 
-Provisioning an external LoadBalancer through cloud providers can take a few minutes, and the creation and deletion of load balancers may introduce delays in your deployment pipeline. This can be problematic if you need faster scaling or dynamic services.
+- Provisioning an external LoadBalancer through cloud providers can take a few minutes, and the creation and deletion of load balancers may introduce delays in your deployment pipeline. This can be problematic if you need faster scaling or dynamic services.
 
 ---
 
