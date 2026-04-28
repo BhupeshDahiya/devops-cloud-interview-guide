@@ -117,3 +117,28 @@ kubectl describe pod myapp
 ### Key takeaway
 
 > "Running `kubectl apply` kicks off a coordinated flow involving the API server, etcd, scheduler, kubelet, and container runtime — all working together to ensure your pod reaches its desired state."
+
+
+### In a nutshell 
+
+1. User sends a request to the API server:
+    - The user runs kubectl apply -f pod.yaml, which sends a request to the API server to create a Pod.
+2. API server authenticates and updates etcd with the unscheduled Pod:
+    - The API server authenticates the request and validates the Pod specification. It then stores the Pod object in etcd, but the Pod is in the Pending state because it hasn’t been assigned to a node yet.
+3. Scheduler detects the unscheduled Pod, selects a node, and updates the Pod spec with nodeName:
+    - The scheduler continuously monitors etcd for Pods that are in the Pending state. It selects an appropriate node based on resource availability and other scheduling rules. Once a node is chosen, the scheduler updates the Pod spec in etcd, adding the nodeName field to indicate which node the Pod should run on.
+4. Pod controller (in the controller-manager) detects the updated Pod spec and ensures the Pod is running:
+    - The Pod controller (part of the controller-manager) monitors etcd for changes. It notices the updated Pod spec (now with the nodeName field), which means the Pod has been assigned a node. The controller-manager ensures that the Pod transitions from Pending to Running, monitoring its health and readiness. The Pod controller doesn’t directly change the state but makes sure the desired state is achieved.
+5. Kubelet on the selected node pulls the image and starts the container:
+    - The kubelet on the selected node reads the updated Pod spec from etcd, pulls the container image (if necessary), and starts the container. Once the container is running, the Pod is considered Running.
+
+- Scheduler failures: If a Pod cannot be scheduled (e.g., no suitable node is available), it stays in the Pending state, and Kubernetes will keep retrying to schedule it until the node is available.
+- Pod health: If a Pod fails after starting (e.g., container crashes), the controller-manager and Pod controller monitor the Pod and may trigger a restart or reschedule based on the Pod spec (if configured for such behavior, like with Deployments).
+
+#### OR
+
+1. User sends a request to the API server.
+2. API server authenticates and updates etcd with the unscheduled Pod.
+3. Scheduler detects the unscheduled Pod, selects a node, and updates the Pod spec with nodeName.
+4 .Pod controller (in the controller-manager) detects the updated Pod spec and marks it as scheduled.
+5 .Kubelet on the selected node pulls the image and starts the container.
