@@ -61,6 +61,13 @@ The LB automatically routes traffic to the backend pods via the cluster’s node
 #### 🚦 4. No L7 (HTTP) Routing
 - It only routes at Layer 4 (TCP/UDP), no path-based or host-based routing.
 - You can’t split `/api` vs `/web` without using Ingress.
+- For such cases, using an Ingress controller is often a better choice. Ingress allows you to consolidate multiple services behind a single external IP and manage routing using URLs (e.g., /app1, /app2), providing more flexibility and cost-efficiency than multiple LoadBalancers.[Nginx ingress, AWS ALB Ingress]
+
+---
+
+#### 🐌 5. Slow Provisioning
+
+Provisioning an external LoadBalancer through cloud providers can take a few minutes, and the creation and deletion of load balancers may introduce delays in your deployment pipeline. This can be problematic if you need faster scaling or dynamic services.
 
 ---
 
