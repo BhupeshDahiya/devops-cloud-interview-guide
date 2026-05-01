@@ -9,7 +9,7 @@ This question checks your understanding of **service discovery and DNS resolutio
 ---
 
 ### Answer  
-**CoreDNS** is the **default DNS server** used by Kubernetes to provide **service discovery**. It translates internal Kubernetes service names (like `my-service.default.svc.cluster.local`) into the corresponding Pod IPs or Cluster IPs, enabling communication between pods using DNS instead of hardcoded IP addresses.
+**CoreDNS** is the **default DNS server** used by Kubernetes to provide **service discovery**. It translates internal Kubernetes service names (like `my-service.default.svc.cluster.local`) into the corresponding Pod IPs (Headless svc) or Cluster IPs, enabling communication between pods using DNS instead of hardcoded IP addresses.
 
 ---
 
@@ -87,3 +87,11 @@ data:
 | **Pod discovery in custom DNS zones** | Extending CoreDNS with plugins for external name resolution            |
 
 ---
+### Key Insight
+- Pods use DNS to find the service, not individual pod IPs, CoreDNS resolves this DNS to IP.
+- kube-proxy handles the dynamic, ephemeral pod IPs are mapped to the IP of the Service and ensures traffic always reaches a live pod.
+- This separation allows Kubernetes to be resilient to pod restarts and scaling.
+
+### In short
+
+CoreDNS handles the name-to-IP resolution, but kube-proxy handles the actual traffic steering by using IPtables to swap the virtual Service IP for a concrete Pod IP. This ensures the client Pod stays decoupled from the constant churning and IP changes of the backend Pods.
