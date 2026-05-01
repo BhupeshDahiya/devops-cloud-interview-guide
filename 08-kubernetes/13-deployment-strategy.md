@@ -94,4 +94,4 @@ Downsides: resource-heavy, more infra complexity.
 
 ### Key takeaway  
 
-> "We follow a **Rolling Update** strategy for general use, and **Canary deployments** for critical services. We choose deployment patterns based on service criticality, risk profile, and observability tooling."
+> "We follow **Rolling Update** strategy for general use, **Blue-Green** for critical applications where rollback must be instant and downtime must be minimal, because you deploy the new version in a parallel environment and can switch traffic immediately, and **Canary** large-scale applications where you want to test the new version with a small subset of users, gradually increasing exposure while monitoring metrics. Choice depends on the risk tolerance, scale, and resources available."
