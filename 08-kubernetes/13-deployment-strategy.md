@@ -40,9 +40,9 @@ strategy:
 
 ---
 
-### 🧪 2. Canary Deployment (for critical changes)
+### 🧪 2. Canary Deployment (for large scale app and real world testing)(better for SaaS)
 
-For services that are **business-critical or prone to regression**, we use **Canary deployments** via tools like:
+For services that are **business-critical or prone to regression**, where you want to test real users with new features gradually and reduce blast radius if failure occurs, we use **Canary deployments** via tools like:
 
 - [Argo Rollouts](https://argo-rollouts.readthedocs.io/)
 - [Flagger](https://flagger.app/)
@@ -61,17 +61,28 @@ With checks between each step.
 - Automated rollback if metrics or logs indicate failure.
 - Controlled and observable releases.
 
+#### Cons:
+- More complex (traffic routing & monitoring)
+- Rollback affects only partial users first
+
 ---
 
-### 🚦 3. Blue-Green Deployment (used less frequently)
+### 🚦 3. Blue-Green Deployment (used for critial apps where we need instant rollback)
 
-In rare cases where instant rollback or migration is needed:
+In rare cases where instant rollback or migration is needed(e.g., payments, auth, DB schema changes), critical services where any downtime or failure is unacceptable, :
 
 - We deploy v2 alongside v1 in full.
 - Switch traffic via load balancer or Ingress.
 - Instant rollback is possible.
 
-Downsides: resource-heavy, more infra complexity.
+#### Pros:
+- Instant rollback
+- Simple traffic switch
+- Full enviornment testing
+
+#### Cons:
+- Resource-heavy (duplicate environment)
+- Slower for frequent updates
 
 ---
 
