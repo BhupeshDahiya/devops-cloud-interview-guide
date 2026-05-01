@@ -92,3 +92,5 @@ helm rollback my-app 2
 ### Key takeaway  
 
 > "Our rollback strategy relies on GitOps principles — reverting Git changes triggers clean, trackable rollbacks. For high-risk deployments, we combine this with automated checks and canary monitoring to catch regressions early."
+
+> If you need multi-environment flexibility and reuse, a Helm-based repo is better because you can manage configuration via values.yaml and rollback via chart versions. If you prioritize simplicity, auditability, and full predictability, a manifest-based repo is better because what’s in Git is exactly what gets deployed. Most medium to large teams use Helm repos for complex apps and manifest repos for simple, single-environment apps.
