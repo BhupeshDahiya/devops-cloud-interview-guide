@@ -71,3 +71,12 @@ Then, send traffic to a **NodePort** or **LoadBalancer** service that fronts you
 ### Key takeaway  
 
 > You **can use your own load balancer**, but it must **send traffic to a running Ingress Controller** inside the cluster. Only the controller can interpret and apply Ingress routing rules.
+
+> Ingress Controller manages the load balancer (or proxy), based on Ingress resources.
+
+> No integration → LB forwards || With integration → LB routes
+
+### The real difference
+
+> In one case, the load balancer just forwards traffic to an Ingress Controller that does the routing. In the other, the Ingress Controller programs the load balancer directly, so the routing happens at the load balancer.
+
