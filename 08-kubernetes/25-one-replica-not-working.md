@@ -87,6 +87,16 @@ kubectl logs <pod-name>
 If pods are crashing, Kubernetes may try to restart them, but they'll never stay in the "Running" state.
 
 ---
+#### ✅ 6. Readiness / liveness probe failures
+- Pods are running but not ready
+- Service might only send traffic to 1 pod
+
+---
+#### ✅ 7. Quotas / limits
+- Namespace has ResourceQuota
+- Pod creation is blocked
+
+---
 
 ### 🧪 Real-World Example
 
