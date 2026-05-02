@@ -6,7 +6,7 @@ This scenario tests your understanding of how ConfigMaps work when mounted as vo
 ---
 
 ### Answer  
-If the ConfigMap is mounted as a **volume**, Kubernetes does reflect changes, but only inside the container **after a short delay** (default: every 1–2 minutes). However, if your application reads the config **only once at startup**, changes won't be picked up unless the pod is restarted.
+If the ConfigMap is mounted as a **volume**, Kubernetes does reflect changes, but only inside the container **after a short delay** (default: every 1–2 minutes). However, if your application reads the config **only once at startup** (Due to them being set as env. var.), changes won't be picked up unless the pod is restarted.
 
 ---
 
