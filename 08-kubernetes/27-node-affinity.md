@@ -94,3 +94,8 @@ This pod will only be scheduled on nodes labeled with `disktype=ssd`.
 ### Key takeaway
 
 > **Node Affinity** gives you fine-grained control over where your pods are scheduled — based on node labels. Use it to improve performance, availability, and compliance by matching the right workload to the right node.
+
+### Extras - pod affinity/anti-affinity
+
+Pod affinity and anti-affinity control scheduling based on other Pods. Affinity places Pods close together for performance, while anti-affinity spreads them 
+apart for high availability. These rules use labels and a topology key (this defines close or far) to define the scope, and can be either required or preferred.
