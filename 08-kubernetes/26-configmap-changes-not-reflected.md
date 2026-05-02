@@ -8,6 +8,10 @@ This scenario tests your understanding of how ConfigMaps work when mounted as vo
 ### Answer  
 If the ConfigMap is mounted as a **volume**, Kubernetes does reflect changes, but only inside the container **after a short delay** (default: every 1–2 minutes). However, if your application reads the config **only once at startup** (Due to them being set as env. var.), changes won't be picked up unless the pod is restarted.
 
+--OR--
+
+If a ConfigMap is used as environment variables, changes won’t reflect until the Pod is restarted. If it’s mounted as a volume, Kubernetes updates the files automatically, but the application must reload them to see the changes,if immediate updates are required, we can use tools like reloader controllers or trigger a rolling restart.
+
 ---
 
 ### Detailed explanation of the answer for readers’ understanding
